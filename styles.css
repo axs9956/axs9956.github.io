@@ -1,0 +1,20 @@
+body{
+    background-color: #131515;
+    /* background-color: #2B2C28; lighter*/
+}
+
+.primary{
+    background-color: #53917E;
+}
+
+.secondary{
+    background-color: #7D938A;
+}
+
+.tertiary{
+    background-color: #E94F37;
+}
+
+.text{
+    background-color: #D8DBE2;
+}
