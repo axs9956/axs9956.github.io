@@ -3,6 +3,11 @@ body{
     /* background-color: #2B2C28; lighter*/
 }
 
+.rounded{
+    border-radius: 50%;
+    padding:5px;
+    background-color: #E94F37;
+}
 .primary{
     background-color: #53917E;
 }
