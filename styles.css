@@ -23,6 +23,9 @@ body{
     align-self: center;
 }
 
+.paragraph{
+    margin-bottom: 15px;
+}
 .border{
     padding-bottom: 10px;
     border-bottom: solid;
