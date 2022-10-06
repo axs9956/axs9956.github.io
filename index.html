@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles.css">
+        <!-- <script type="text/javascript" src="script.js"></script> -->
         <title>Lab Rats</title>
     </head>
     <body>
@@ -39,8 +40,22 @@
                     developing makerspace management portals of their own.
                 </div>
             </div>
+            <div style="display: flex; justify-content: right; margin-top: 20px; ">
+                <div style="color: #53917E; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-weight: bold;">Tiny Timer</div>
+                <div style="margin-left: 10px;">
+                    <div class="timerDisplay">
+                        00 : 00 : 00 : 0000
+                    </div>
+                    <div class="buttons">
+                        <button id="pauseTimer">Pause</button>
+                        <button id="startTimer">Start</button>
+                        <button id="resetTimer">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-            <h3 class="text" style="display: flex; align-items:center; padding-top: 20px">
+            
+            <h3 class="text" style="display: flex; align-items:center;">
                 Lab Rats: Team Members
             </h3>
             <div class="team">
@@ -103,6 +118,19 @@
                     </div>
                 </div>
             </div>
+            <!-- <div class="domain-buttons">
+                <button type="button" onclick="show()">Show image</button>
+                <button type="button" onclick="show()">Show image</button>
+                <button type="button" onclick="show()">Show image</button>
+
+            </div> -->
+       
+            <div class="domain">
+                <img id="sheet" style="width: 100%;" src="\assets\subsystem.PNG">
+                <img id="sheet" style="width: 100%;" src="\assets\MakerDiag.PNG">
+                <img id="sheet" style="width: 100%;" src="\assets\MentorDiag.PNG">
+                <img id="sheet" style="width: 100%;" src="\assets\AdminDiag.PNG">
+            </div>
 
             <h3 class="text" style="display: flex; align-items:center;">
                 Resources
@@ -117,7 +145,59 @@
                     <img class="rounded" height="30" src="\assets\pwpt_icon.PNG">
                     <div class="text">4 Ups</div>
                 </a>
+
+                <a class="link" style="margin-left: 50px;" href="https://docs.google.com/document/d/12Vk9HDUDCEXqe9LZbN146jCkRuFSTvq4vAutO-eWxes/edit#" target="_blank">
+                    <img class="rounded" height="30" src="\assets\glass-icon.png">
+                    <div class="text">The Plan</div>
+                </a>
             </div>
         </div>
+
+        <!-- got tired of trying to time things in my head -->
+        <script>
+            let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+            let timerRef = document.querySelector('.timerDisplay');
+            let int = null;
+
+            document.getElementById('startTimer').addEventListener('click', ()=>{
+                if(int!==null){
+                    clearInterval(int);
+                }
+                int = setInterval(displayTimer,10);
+            });
+
+            document.getElementById('pauseTimer').addEventListener('click', ()=>{
+                clearInterval(int);
+            });
+
+            document.getElementById('resetTimer').addEventListener('click', ()=>{
+                clearInterval(int);
+                [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+                timerRef.innerHTML = '00 : 00 : 00 : 000 ';
+            });
+
+            function displayTimer(){
+                milliseconds+=10;
+                if(milliseconds == 1000){
+                    milliseconds = 0;
+                    seconds++;
+                    if(seconds == 60){
+                        seconds = 0;
+                        minutes++;
+                        if(minutes == 60){
+                            minutes = 0;
+                            hours++;
+                        }
+                    }
+                }
+                let h = hours < 10 ? "0" + hours : hours;
+                let m = minutes < 10 ? "0" + minutes : minutes;
+                let s = seconds < 10 ? "0" + seconds : seconds;
+                let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+
+                timerRef.innerHTML = ` ${h} : ${m} : ${s} : ${ms}`;
+            }
+
+        </script>
     </body>
 </html>
